@@ -77,6 +77,11 @@ namespace InfiniteChestsV3
 			sb.Append("~"); //We're adding this because then we can do SQL queries for "~itemid," for exact item matches
 			foreach (Item item in items)
 			{
+                if(item == null)
+                {
+                    TSPlayer.Server.SendInfoMessage($"Ignoring null item in chest at {this.x}, {this.y}");
+                    continue;
+                }
 				string temp = $"{item.netID},{item.stack},{item.prefix}~";
 				sb.Append(temp);
 			}
